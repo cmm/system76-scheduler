@@ -209,6 +209,8 @@ async fn daemon(
 
                             let name = process::name(cmdline);
 
+                            tracing::debug!("execsnoop says {:?}({name}) has been born", process.pid);
+
                             let _res = scheduled_tx.send((
                                 Instant::now() + Duration::from_secs(2),
                                 ExecCreate {
