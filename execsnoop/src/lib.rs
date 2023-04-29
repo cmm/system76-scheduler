@@ -57,9 +57,11 @@ impl ProcessIterator {
                         pid,
                         parent_pid,
                     });
+                } else {
+                    tracing::error!("failed to parse execsnoop output: {:?}", String::from_utf8_lossy(line));
                 }
             } else {
-                tracing::error!("failed to parse execsnoop output: {:?}", String::from_utf8_lossy(line));
+                tracing::error!("failed to tokenize execsnoop output: {:?}", String::from_utf8_lossy(line));
             }
         }
 
